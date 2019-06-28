@@ -13,7 +13,7 @@
     "devDependencies": {},
     "scripts": {
         "test": "mocha",
-        "koombeacucumber": "cucumber-js --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
+        "testingcucumber": "cucumber-js --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
     },
     "author": "",
     "license": "ISC"

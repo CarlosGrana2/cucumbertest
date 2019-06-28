@@ -1,16 +1,17 @@
 Feature: testing Koombea
 
-Scenario: search en Google
+Scenario: Búsqueda en Google
 
-  Given I open Google's search page
-  Then the title is "Google"
-  And the Google search form exists
-  And click on the menu image
-  And validate that the search bar exists
-  And perform search
+  Given Iniciar navegador
+  Then Validamos si el titulo es "Google"
+  And Existe el elemento de búsqueda por imagenes
+  And Presionar click en imagenes
+  And Validar si existe la barra de búsqueda
+  And Realizar la búsqueda
 
 
-  Scenario: Descargando Imagen
+  Scenario: Descargar Imagen
 
-  Given select image to download
-  And downloading the image
+  Given Seleccionar imagen a descargar
+  And descargar imagen
+  And validar descarga de imagen en equipo

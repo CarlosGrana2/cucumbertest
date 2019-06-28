@@ -1,40 +1,41 @@
 const { client } = require('nightwatch-api');
 const { Given, Then, When } = require('cucumber');
-const googleSearch = client.page.home();
+const koombea = client.page.test();
 
 
-Given(/^I open Google's search page$/, () => {
-    return googleSearch.navigate().waitForElementVisible('body', 1000);
+
+Given(/^Iniciar navegador$/, () => {
+    return koombea.navigate().waitForElementVisible('body', 1000);
 });
 
-Then(/^the title is "([^"]*)"$/, title => {
+Then(/^Validamos si el titulo es "([^"]*)"$/, title => {
     return client.assert.title(title);
 });
 
-Then(/^the Google search form exists$/, () => {
-    return googleSearch
+Then(/^Existe el elemento de búsqueda por imagenes$/, () => {
+    return koombea
         .assert
         .visible('@menuimg')
         .waitForElementVisible('@menuimg', 1000);
 });
 
-Then(/^click on the menu image$/, () => {
-    return googleSearch
+Then(/^Presionar click en imagenes$/, () => {
+    return koombea
         .waitForElementVisible('@menuimg', 1000)
         .click('@menuimg');
 });
 
-Then(/^validate that the search bar exists$/, () => {
-    return googleSearch
+Then(/^Validar si existe la barra de búsqueda$/, () => {
+    return koombea
         .waitForElementVisible('@searchBar')
         .assert
         .visible('@searchBar')
         .waitForElementVisible('@searchBar');
 });
 
-Then(/^perform search$/, () => {
+Then(/^Realizar la búsqueda$/, () => {
 
-    return googleSearch.setValue('@searchBar', 'pruebas')
+    return koombea.setValue('@searchBar', 'koombea')
         .waitForElementVisible('@submitButton')
         .submit('@submitButton');
 
@@ -42,8 +43,8 @@ Then(/^perform search$/, () => {
 
 /* Escenario descargando imagen*/
 
-Given(/^select image to download$/, () => {
-    return googleSearch
+Given(/^Seleccionar imagen a descargar$/, () => {
+    return koombea
         .waitForElementVisible('@imagen')
         .assert
         .visible('@imagen')
@@ -53,9 +54,9 @@ Given(/^select image to download$/, () => {
 });
 
 
-Then(/^downloading the image$/, () => {
+Then(/^descargar imagen$/, () => {
 
-    return googleSearch
+    return koombea
         .waitForElementVisible('@imagen')
         .getAttribute('@imagen', "src", function(result) {
 
@@ -71,10 +72,11 @@ Then(/^downloading the image$/, () => {
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
+                    
 
                 }
 
-                descargarimg('Koombeaimg', limpiarsrc(srcimg), 'jpeg');
+                descargarimg('Koombea', limpiarsrc(srcimg), 'jpeg');
 
             }, [result.value]);
 
@@ -83,4 +85,12 @@ Then(/^downloading the image$/, () => {
     .pause(10000);
 
 
+});
+
+Then(/^validar descarga de imagen en equipo$/, () => {
+
+    return koombea.assert
+     .descarga('Koombea.jpeg');
+
+    
 });

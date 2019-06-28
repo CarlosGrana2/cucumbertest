@@ -1,7 +1,9 @@
 const chromedriver = require('chromedriver');
+const pathdescarga = __dirname; 
 
 module.exports = {
     page_objects_path: "page",
+    custom_assertions_path: "custom-assertions",
 
     test_settings: {
         default: {
@@ -19,7 +21,7 @@ module.exports = {
                     prefs: {
                         download: {
                             prompt_for_download: false,
-                            default_directory: "./download_folder"
+                            default_directory: pathdescarga //"./download_folder"
                         }
                     },
                     args: ["safebrowsing-disable-download-protection"]
@@ -28,3 +30,5 @@ module.exports = {
         }
     }
 };
+
+module.exports.pathdescarga = pathdescarga;
